@@ -68,3 +68,35 @@ farmer-assist/
 ├── crop-recommend.html
 ├── disease-detect.html
 └── README.md
+
+
+---
+
+## ⚙️ Setup Instructions
+
+### 🧱 Prerequisites
+- Install [XAMPP](https://www.apachefriends.org/)
+- Install [Git](https://git-scm.com/)
+- Clone this repository
+
+### 💻 Steps
+
+```bash
+# Clone the repository
+git clone https://github.com/shivam09-git/farmer-assist.git
+
+# Move into project folder
+cd farmer-assist
+
+# Place project in XAMPP htdocs folder
+C:\xampp\htdocs\farmer-assist
+
+# Start Apache and MySQL in XAMPP Control Panel
+
+# Import the database
+- Open phpMyAdmin
+- Create a database named farmer_assist
+- Import `database/farmer_assist.sql`
+
+Then open:
+http://localhost/farmer-assist/
