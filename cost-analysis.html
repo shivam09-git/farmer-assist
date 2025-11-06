@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cost Analysis - Farmer Assist</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🌱 Farmer Assist</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="crop-recommend.html">Crop Recommendation</a></li>
+        <li><a href="disease-detect.html">Disease Detection</a></li>
+        <li><a href="cost-analysis.html" class="active">Cost Analysis</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="signup.html">Sign up</a></li>
+        <li id="auth-links"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <section class="page-content">
+    <h1>📊 Crop Cost Analysis</h1>
+    <p>Estimate farming costs and expected revenue.</p>
+
+    <form class="form-card" action="backend/api/cost_analysis.php" method="POST">
+      <label for="seed">Seed Cost (₹):</label>
+      <input type="number" id="seed" name="seed" required>
+
+      <label for="fertilizer">Fertilizer Cost (₹):</label>
+      <input type="number" id="fertilizer" name="fertilizer" required>
+
+      <label for="labor">Labor Cost (₹):</label>
+      <input type="number" id="labor" name="labor" required>
+
+      <label for="irrigation">Irrigation Cost (₹):</label>
+      <input type="number" id="irrigation" name="irrigation" required>
+
+      <label for="expected-yield">Expected Yield (kg):</label>
+      <input type="number" id="expected-yield" name="expected_yield" required>
+
+      <label for="market-price">Market Price (₹ per kg):</label>
+      <input type="number" id="market-price" name="market_price" required>
+
+      <button type="submit" class="btn">Calculate</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Farmer Assist. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+
+</body>
+</html>

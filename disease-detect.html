@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disease Detection - Farmer Assist</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Inline page-specific improvements */
+    .result-card {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #f9fff9;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      animation: fadeIn 0.6s ease;
+    }
+    .result-card h3 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+    .result-card p {
+      margin: 5px 0;
+      font-size: 15px;
+    }
+    .loading {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #4caf50;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🌱 Farmer Assist</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="crop-recommend.html">Crop Recommendation</a></li>
+        <li><a href="disease-detect.html" class="active">Disease Detection</a></li>
+        <li><a href="cost-analysis.html">Cost Analysis</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="signup.html">Sign up</a></li>
+        <li id="auth-links"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <section class="page-content">
+    <h1>🩺 Plant Disease Detection</h1>
+    <p>Upload a leaf image to detect plant diseases using AI.</p>
+
+    <form id="diseaseForm" class="form-card" enctype="multipart/form-data">
+      <label for="plant-image">Upload Image:</label>
+      <input type="file" id="plant-image" name="plant_image" accept="image/*" required>
+      <button type="submit" class="btn">Detect Disease</button>
+    </form>
+
+    <div id="loading" class="loading" style="display:none;">Analyzing image... please wait 🌿</div>
+    <div id="result"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Farmer Assist. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+const form = document.getElementById("diseaseForm");
+const resultDiv = document.getElementById("result");
+const loadingText = document.getElementById("loading");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  resultDiv.innerHTML = "";
+  loadingText.style.display = "block";
+
+  const file = document.getElementById("plant-image").files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("plant_image", file);
+
+  try {
+    const response = await fetch('backend/api/detect.php', {
+    method: 'POST',
+    body: formData
+    });
+
+    if (!response.ok) throw new Error(`Server returned ${response.status}`);
+    const data = await response.json();
+
+    loadingText.style.display = "none";
+
+    if (data.status === "success" && data.detections && data.detections.length > 0) {
+      resultDiv.innerHTML = data.detections
+        .map(det => `
+          <div class="result-card">
+            <img src="${URL.createObjectURL(file)}" alt="Uploaded Leaf" style="width:100%; border-radius:10px; margin-bottom:10px;">
+            <h3>🌿 Disease Detected: ${det.class || "Unknown"}</h3>
+            <p><strong>Confidence:</strong> ${(det.confidence*100).toFixed(2)}%</p>
+            <p><strong>Recommendation:</strong> Apply suitable fungicide and avoid overwatering.</p>
+          </div>
+        `).join("");
+    } else {
+      resultDiv.innerHTML = `<p style="color:red;">No disease detected or error occurred.</p>`;
+    }
+
+  } catch (err) {
+    loadingText.style.display = "none";
+    resultDiv.innerHTML = `<p style="color:red;">Error connecting to backend: ${err.message}</p>`;
+    console.error(err);
+  }
+});
+</script>
+</body>
+</html>

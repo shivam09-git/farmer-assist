@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Recommendation - Farmer Assist</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🌱 Farmer Assist</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="crop-recommend.html" class="active">Crop Recommendation</a></li>
+        <li><a href="disease-detect.html">Disease Detection</a></li>
+        <li><a href="cost-analysis.html">Cost Analysis</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="signup.html">Sign up</a></li>
+        <li id="auth-links"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <section class="page-content">
+    <h1>🌾 Crop Recommendation</h1>
+    <p>Enter details about your farm to get the best crop suggestions.</p>
+
+    <form class="form-card" action="backend/api/crop_recommend.php" method="POST">
+      <label for="soil">Soil Type:</label>
+      <select id="soil" name="soil" required>
+        <option value="">Select Soil</option>
+        <option value="clay">Clay</option>
+        <option value="sandy">Sandy</option>
+        <option value="loamy">Loamy</option>
+      </select>
+
+      <label for="season">Season:</label>
+      <select id="season" name="season" required>
+        <option value="">Select Season</option>
+        <option value="kharif">Kharif</option>
+        <option value="rabi">Rabi</option>
+        <option value="zaid">Zaid</option>
+      </select>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="Enter your city" required>
+
+      <button type="submit" class="btn">Get Recommendation</button>
+    </form>
+  </section>
+  <section class="crop-info">
+  <h2>Popular Crops</h2>
+  <div class="crop-cards">
+
+    <a href="crops/wheat.html" class="crop-card-link">
+      <div class="crop-card">
+        
+        <h3>Wheat 🌾</h3>
+        <p>Wheat is a major staple crop grown in winter. It requires cool climate and moderate rainfall.</p>
+      </div>
+    </a>
+
+    <a href="crops/rice.html" class="crop-card-link">
+      <div class="crop-card">
+        
+        <h3>Rice 🍚</h3>
+        <p>Rice thrives in hot and humid climates with plenty of water. It is the main food crop in Asia.</p>
+      </div>
+    </a>
+
+    <a href="crops/maize.html" class="crop-card-link">
+      <div class="crop-card">
+        
+        <h3>Maize 🌽</h3>
+        <p>Maize is a versatile crop grown in warm conditions. It requires well-drained fertile soil.</p>
+      </div>
+    </a>
+
+    <a href="crops/soybean.html" class="crop-card-link">
+      <div class="crop-card">
+        
+        <h3>Soybean 🌱</h3>
+        <p>Soybean is rich in protein and oil. It grows best in warm climates with moderate rainfall.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Farmer Assist. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Assist - Smart Farming</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🌱 Farmer Assist</div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="crop-recommend.html">Crop Recommendation</a></li>
+        <li><a href="disease-detect.html">Disease Detection</a></li>
+        <li><a href="cost-analysis.html">Cost Analysis</a></li>
+        <li><a href="about.html">About</a></li>
+        <li id="auth-links"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Empowering Farmers with Technology</h1>
+    <p>From sowing to harvesting – get guidance, analysis, and real-time support.</p>
+    <a href="crop-recommend.html" class="btn">Get Started</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-card">
+      <h2>🌾 Crop Recommendation</h2>
+      <p>Find the best crops to grow based on soil & climate conditions.</p>
+    </div>
+    <div class="feature-card">
+      <h2>🩺 Disease Detection</h2>
+      <p>Upload plant images and detect diseases with AI assistance.</p>
+    </div>
+    <div class="feature-card">
+      <h2>📊 Cost Analysis</h2>
+      <p>Estimate costs & profits for smarter farming decisions.</p>
+    </div>
+    <div class="feature-card">
+      <h2>🌦️ Real-time Weather</h2>
+      <p>Stay updated with weather conditions for your farm.</p>
+    </div>
+  </section>
+
+  <!-- Weather Widget -->
+  <section class="weather">
+    <h2>🌤️ Current Weather</h2>
+    <div id="weather-box">Loading weather...</div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Farmer Assist. All rights reserved.</p>
+  </footer>
+
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+
+  <!-- 🔹 Add this JS at the bottom -->
+  <script>
+    // --- Handle dynamic login/logout buttons ---
+    const authLinks = document.getElementById("auth-links");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user && user.email) {
+      // If logged in, show username and logout
+      authLinks.innerHTML = `
+        <span>👋 Hello, ${user.name}</span>
+        <button id="logout-btn" class="btn" style="margin-left:10px;">Logout</button>
+      `;
+
+      // Logout event
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        localStorage.removeItem("user");
+        alert("Logged out successfully!");
+        window.location.href = "index.html";
+      });
+
+    } else {
+      // If not logged in, show login/signup
+      authLinks.innerHTML = `
+        <a href="login.html">Login</a> / 
+        <a href="signup.html">Signup</a>
+      `;
+    }
+  </script>
+</body>
+</html>
