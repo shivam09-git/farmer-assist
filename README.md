@@ -100,3 +100,24 @@ C:\xampp\htdocs\farmer-assist
 
 Then open:
 http://localhost/farmer-assist/
+
+🧠 Future Improvements
+
+Add AI-powered disease detection model
+
+Implement real-time weather-based crop suggestions
+
+Build mobile-friendly PWA version
+
+Add multi-language support
+
+👨‍💻 Author
+
+Shivam Naik
+🌐 GitHub Profile
+
+💼 Passionate about web development, UI design, and AI-powered solutions.
+
+📜 License
+
+This project is licensed under the MIT License — feel free to use and modify it for learning or research purposes.
