@@ -51,4 +51,20 @@ It bridges the gap between **technology and agriculture**, helping farmers make 
 ---
 
 ## 🧩 Folder Structure
-
+farmer-assist/
+├── assets/
+│ ├── css/
+│ ├── js/
+│ ├── images/
+├── backend/
+│ ├── api/
+│ ├── uploads/
+│ └── helpers/
+├── database/
+│ └── farmer_assist.sql
+├── index.html
+├── login.html
+├── signup.html
+├── crop-recommend.html
+├── disease-detect.html
+└── README.md
